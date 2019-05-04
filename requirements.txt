@@ -1,0 +1,7 @@
+PyYAML
+tensorflow>=1.8.0
+foolbox>=1.2.0
+numpy>=1.14.2
+scipy
+randomgen>=1.14.4
+scikit-image
