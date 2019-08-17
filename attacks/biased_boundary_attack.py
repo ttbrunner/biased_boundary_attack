@@ -24,7 +24,7 @@ class BiasedBoundaryAttack:
 
     def __init__(self, blackbox_model, sample_gen, dm_main, substitute_model=None):
         """
-        Creates a reusable instance.
+        Creates an instance that can be reused when attacking multiple images.
         :param blackbox_model: The model to attack.
         :param sample_gen: Random sample generator.
         :param substitute_model: A Foolbox differentiable surrogate model for gradients. If None, then the surrogate bias will not be used.
@@ -69,7 +69,7 @@ class BiasedBoundaryAttack:
         :param X_start: The starting point (must be of target class).
         :param n_calls_left_fn: A function that returns the currently remaining number of queries against the model.
         :param n_max_per_batch: How many samples are drawn per "batch". Samples are processed serially (the challenge doesn't allow
-                                batching), but for each "batch", the attack dynamically adjusts hyperparams based on the success of
+                                batching), but for each sample, the attack dynamically adjusts hyperparams based on the success of
                                 previous samples. This "batch" size is the max number of samples after which hyperparams are reset, and
                                 a new "batch" is started. See generate_candidate().
         :param n_seconds: Maximum seconds allowed for the attack to complete.
@@ -291,7 +291,7 @@ class BiasedBoundaryAttack:
 
         # Perturb the current position before calc'ing gradient
         n_samples = 4
-        radius_max = 1e-2 * source_norm     # deactivated for now
+        radius_max = 1e-2 * source_norm   
         x_perturb = sample_hypersphere(n_samples=n_samples, sample_shape=x_orig.shape, radius=1, sample_gen=self.sample_gen)
         x_perturb *= np.random.uniform(0., radius_max)
 
