@@ -1,3 +1,8 @@
+"""
+This code works with the "vanilla" ImageNet classification dataset, downloaded from http://image-net.org/download-images.
+Tested with the ILSVRC2017 version.
+"""
+
 import numpy as np
 import os
 
@@ -60,7 +65,6 @@ def load_dataset_y_val(imagenet_base_path, limit=None):
     Loads all labels for the ImageNet validation set.
     """
 
-    # Cache the preprocessed dataset, so we can start up faster. It's small enough so we can do this easily.
     print('Loading dataset from source...')
     y_val = _load_labels(imagenet_base_path, limit=limit)
 
